@@ -36,7 +36,6 @@ public class LoginController extends BaseController {
         }
 
         String redirect_after = request.getParameter("redirect_after");
-        System.out.println(redirect_after);
 
         Authentication auth = new Authentication();
 
