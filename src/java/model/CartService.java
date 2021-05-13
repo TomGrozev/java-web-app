@@ -20,13 +20,13 @@ public class CartService {
 //    public Product product(int id) {
 //        return helper.getProduct(id);
 //    }
-//
-//    public void createProduct(Product product) {
-//        helper.createProduct(product);
-//    }
-//
-//    public void deleteProduct(int id) {
-//        helper.deleteProduct(id);
-//    }
+
+    public void addProduct(User user, int product_id) {
+        helper.addProduct(user, product_id);
+    }
+
+    public void removeProduct(User user, int id) {
+        helper.removeProduct(user, id);
+    }
 
 }

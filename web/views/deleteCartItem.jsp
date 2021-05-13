@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <title>Products</title>
+        <title>Delete Cart Item | ${product.title}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -39,34 +39,15 @@
                 <p>${param.error}</p>
             </c:if>
         </div>
-        <a href="topics">Go to Topics</a>
-        <a href="cart">My Cart</a>
 
-        <h4>Products for Sale</h4>
+        <h3>Delete <strong>${product.title}</strong></h3>
+        <a href="cart">Cart</a>
 
-        <a href="newProduct">Sell a Product</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Seller</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="product" items="${products}">
-                <tr>
-                    <td><a href="products?id=${product.id}">${product.title}</a></td>
-                    <td>${product.getUser().getUsername()}</td>
-                    <td>
-                        <form action="cart" method="post">
-                            <input type="hidden" name="id" value="${product.id}">
-                            <input type="submit" value="Add to Cart">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        <form action="deleteCartItem" method="POST">
+            <input type="hidden" name="id" value="${product.id}">
+            <p>Are you sure you want to remove this product from your cart?</p>
+            <input type="submit" value="Yes, Remove It">
+            <a href="cart">No, take me back!</a>
+        </form>
     </body>
 </html>

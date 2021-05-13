@@ -45,6 +45,7 @@
             <tr>
                 <th>Product</th>
                 <th>Price</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -52,6 +53,12 @@
                 <tr>
                     <td>${product.title}</td>
                     <td>$0</td>
+                    <td>
+                        <form action="deleteCartItem" method="post">
+                            <input type="hidden" name="id" value="${product.id}">
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

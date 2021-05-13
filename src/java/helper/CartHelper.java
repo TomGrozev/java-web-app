@@ -36,29 +36,29 @@ public class CartHelper {
         return cart;
     }
 
-//    public void createProduct(Product product) {
-//        try {
-//            Connection conn = (new DatabaseDriver.Database()).getConnection();
-//            PreparedStatement ps = conn.prepareStatement("INSERT INTO products(title, description, username) VALUES (?, ?, ?)");
-//            ps.setString(1, product.getTitle());
-//            ps.setString(2, product.getDescription());
-//            ps.setString(3, product.getUser().getUsername());
-//            ps.executeUpdate();
-//        } catch (SQLException throwables) {
-//            throw new RuntimeException(throwables);
-//        }
-//    }
-//
-//    public void deleteProduct(int id) {
-//        try {
-//            Connection conn = (new DatabaseDriver.Database()).getConnection();
-//            PreparedStatement ps = conn.prepareStatement("DELETE FROM products WHERE id = ?");
-//            ps.setInt(1, id);
-//            ps.executeUpdate();
-//        } catch (SQLException throwables) {
-//            throw new RuntimeException(throwables);
-//        }
-//    }
+    public void addProduct(User user, int product_id) {
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO cart(product_id, username) VALUES (?, ?)");
+            ps.setInt(1, product_id);
+            ps.setString(2, user.getUsername());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+    }
+
+    public void removeProduct(User user, int id) {
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM cart WHERE product_id = ? AND username = ?");
+            ps.setInt(1, id);
+            ps.setString(2, user.getUsername());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+    }
 
 //    private Cart createCartObject(ResultSet rs) throws SQLException {
 //        Cart cart = new Cart();
