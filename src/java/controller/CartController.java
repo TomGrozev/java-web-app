@@ -20,7 +20,7 @@ public class CartController extends BaseController {
         CartService service = new CartService();
 
         request.setAttribute("cart", service.cart(getUserSession(request)));
-        view("cart", request, response);
+        view("cart", "Cart", request, response);
     }
 
     @Override

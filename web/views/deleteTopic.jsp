@@ -7,47 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-    <head>
-        <title>Delete Topic | ${topic.title}</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <p><strong>Project By: </strong> Tom Grozev</p>
+<h3>Delete <strong>${topic.title}</strong></h3>
+<a href="topics">All topics</a>
 
-        <h2>The Python Discussion Forum</h2>
-
-        <c:choose>
-            <c:when test="${login_session != null}">
-                <a href="logout">Logout</a>
-            </c:when>
-            <c:otherwise>
-                <a href="login">Login</a>
-            </c:otherwise>
-        </c:choose>
-
-        <div>
-            <c:if test="${hasErrors}">
-                <p>There were some errors: </p>
-                <c:forEach var="error" items="${errors}">
-                    <p>${error.getMessage()}</p>
-                </c:forEach>
-            </c:if>
-
-            <c:if test="${param.error}">
-                <p>${param.error}</p>
-            </c:if>
-        </div>
-
-        <h3>Delete <strong>${topic.title}</strong></h3>
-        <a href="topics">All topics</a>
-
-        <form action="deleteTopic" method="POST">
-            <input type="hidden" name="id" value="${topic.id}">
-            <p>Are you sure you want to delete this topic?</p>
-            <input type="submit" value="Yes, Delete It">
-            <a href="topics">No, take me back!</a>
-        </form>
-    </body>
-</html>
+<form action="deleteTopic" method="POST">
+    <input type="hidden" name="id" value="${topic.id}">
+    <p>Are you sure you want to delete this topic?</p>
+    <input type="submit" value="Yes, Delete It">
+    <a href="topics">No, take me back!</a>
+</form>

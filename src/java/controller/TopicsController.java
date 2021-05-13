@@ -1,6 +1,7 @@
 package controller;
 
 import layout.BaseController;
+import model.Topic;
 import model.TopicsService;
 
 import javax.servlet.ServletException;
@@ -23,11 +24,12 @@ public class TopicsController extends BaseController {
 
         if (id == null || id.equals("")) {
             request.setAttribute("topics", service.topics());
-            view("topics", request, response);
+            view("topics", "Topics", request, response);
             return;
         }
 
-        request.setAttribute("topic", service.topic(Integer.parseInt(id)));
-        view("topic", request, response);
+        Topic topic = service.topic(Integer.parseInt(id));
+        request.setAttribute("topic", topic);
+        view("topic", topic.getTitle() + " | Topic", request, response);
     }
 }

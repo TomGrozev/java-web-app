@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -6,47 +5,23 @@
   Time: 1:44 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <p><strong>Project By: </strong> Tom Grozev</p>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<h2>Login</h2>
 
-    <h2>Login</h2>
+<c:if test="${param.registered == 'true'}">
+    <p>You have registered successfully, please login with your new details.</p>
+</c:if>
 
-    <div>
-        <c:if test="${hasErrors}">
-            <p>There were some errors: </p>
-            <c:forEach var="error" items="${errors}">
-                <p>${error.getMessage()}</p>
-            </c:forEach>
-        </c:if>
-
-        <c:if test="${param.error}">
-            <p>${param.error}</p>
-        </c:if>
-    </div>
-
-    <c:if test="${param.registered == 'true'}">
-        <p>You have registered successfully, please login with your new details.</p>
-    </c:if>
-
-    <form action="login" method="post">
-        Username: <input type="text" name="username">
-        <br>
-        Password: <input type="password" name="password">
-        <br><br>
-        <c:if test="${redirect_after != null}">
-            <input type="hidden" name="redirect_after" value="${redirect_after}">
-        </c:if>
-        <input type="submit" value="Login">
-    </form>
+<form action="login" method="post">
+    Username: <input type="text" name="username">
     <br>
-    <p>-- OR --</p>
-    <a href="register">Register</a>
-</body>
-</html>
+    Password: <input type="password" name="password">
+    <br><br>
+    <c:if test="${redirect_after != null}">
+        <input type="hidden" name="redirect_after" value="${redirect_after}">
+    </c:if>
+    <input type="submit" value="Login">
+</form>
+<br>
+<p>-- OR --</p>
+<a href="register">Register</a>

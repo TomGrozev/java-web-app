@@ -21,7 +21,7 @@ public class RegisterController extends BaseController {
             return;
         }
 
-        view("register", request, response);
+        view("register", "Register", request, response);
     }
 
     @Override
@@ -42,6 +42,6 @@ public class RegisterController extends BaseController {
         request.setAttribute("username", user.getUsername());
         request.setAttribute("password", user.getPassword());
 
-        view("register", request, response, new ArrayList<>(Arrays.asList(new ProjectError(400, "There was an error registering this user. Maybe the account exists already."))));
+        view("register", "Register", request, response, new ArrayList<>(Arrays.asList(new ProjectError(400, "There was an error registering this user. Maybe the account exists already."))));
     }
 }

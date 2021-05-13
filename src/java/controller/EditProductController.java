@@ -22,8 +22,9 @@ public class EditProductController extends BaseController {
 
         ProductsService service = new ProductsService();
 
-        request.setAttribute("product", service.product(Integer.parseInt(id)));
-        view("editProduct", request, response);
+        Product product = service.product(Integer.parseInt(id));
+        request.setAttribute("product", product);
+        view("editProduct", "Edit Topic | " + product.getTitle(), request, response);
     }
 
     @Override

@@ -13,19 +13,21 @@ public class BaseController extends HttpServlet {
 
     private static final String SESSION_KEY = "username";
 
-    protected void view(String viewName, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void view(String viewName, String title, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("login_session", getUserSession(request));
-        request.getRequestDispatcher("/views/" + viewName + ".jsp").forward(request, response);
+        request.setAttribute("pageTitle", title);
+        request.setAttribute("pagePath", viewName);
+        request.getRequestDispatcher("/templates/template.jsp").forward(request, response);
     }
 
-    protected void view(String viewName, HttpServletRequest request, HttpServletResponse response, List<ProjectError> errs) throws ServletException, IOException {
+    protected void view(String viewName, String title, HttpServletRequest request, HttpServletResponse response, List<ProjectError> errs) throws ServletException, IOException {
         request.setAttribute("login_session", getUserSession(request));
         request.setAttribute("hasErrors", !errs.isEmpty());
         if (!errs.isEmpty()) {
             request.setAttribute("errors", errs);
         }
 
-        view(viewName, request, response);
+        view(viewName, title, request, response);
     }
 
     protected User getUserSession(HttpServletRequest request) {

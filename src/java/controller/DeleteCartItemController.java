@@ -26,7 +26,7 @@ public class DeleteCartItemController extends BaseController {
 
         request.setAttribute("product", product);
 
-        view("deleteCartItem", request, response);
+        view("deleteCartItem", "Delete Cart Item | " + product.getTitle(), request, response);
     }
 
     @Override

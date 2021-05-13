@@ -29,7 +29,7 @@ public class DeleteTopicController extends BaseController {
 
         request.setAttribute("topic", topic);
 
-        view("deleteTopic", request, response);
+        view("deleteTopic", "Delete Topic | " + topic.getTitle(), request, response);
     }
 
     @Override

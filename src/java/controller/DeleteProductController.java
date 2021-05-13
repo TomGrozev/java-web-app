@@ -29,7 +29,7 @@ public class DeleteProductController extends BaseController {
 
         request.setAttribute("product", product);
 
-        view("deleteProduct", request, response);
+        view("deleteProduct", "Delete Product | " + product.getTitle(), request, response);
     }
 
     @Override

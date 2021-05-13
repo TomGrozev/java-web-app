@@ -26,6 +26,6 @@ public class ProfileController extends BaseController {
         request.setAttribute("user", user);
         request.setAttribute("products", service.products(user));
         request.setAttribute("topics", service.engagedTopics(user));
-        view("profile", request, response);
+        view("profile", "User Profile", request, response);
     }
 }

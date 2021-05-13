@@ -26,7 +26,7 @@ public class LoginController extends BaseController {
             request.setAttribute("redirect_after", redirect_after);
         }
 
-        view("login", request, response);
+        view("login", "Login", request, response);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class LoginController extends BaseController {
             return;
         }
 
-        view("login", request, response, new ArrayList<>(Collections.singletonList(new ProjectError(401, "Invalid authentication"))));
+        view("login", "Login", request, response, new ArrayList<>(Collections.singletonList(new ProjectError(401, "Invalid authentication"))));
     }
 }

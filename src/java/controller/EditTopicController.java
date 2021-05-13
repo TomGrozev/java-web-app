@@ -24,8 +24,10 @@ public class EditTopicController extends BaseController {
 
         TopicsService service = new TopicsService();
 
-        request.setAttribute("topic", service.topic(Integer.parseInt(id)));
-        view("editTopic", request, response);
+        Topic topic = service.topic(Integer.parseInt(id));
+
+        request.setAttribute("topic", topic);
+        view("editTopic", "Edit Topic | " + topic.getTitle(), request, response);
     }
 
     @Override

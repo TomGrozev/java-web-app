@@ -18,7 +18,7 @@ public class NewTopicController extends BaseController {
             return;
         }
 
-        view("newTopic", request, response);
+        view("newTopic", "New Topic", request, response);
     }
 
     @Override

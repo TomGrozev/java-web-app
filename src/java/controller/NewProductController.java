@@ -18,7 +18,7 @@ public class NewProductController extends BaseController {
             return;
         }
 
-        view("newProduct", request, response);
+        view("newProduct", "New Product", request, response);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class LogoutController extends BaseController {
             return;
         }
 
-        view("logout", request, response);
+        view("logout", "Logout", request, response);
     }
 
     @Override

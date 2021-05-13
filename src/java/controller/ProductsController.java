@@ -1,6 +1,7 @@
 package controller;
 
 import layout.BaseController;
+import model.Product;
 import model.ProductsService;
 
 import javax.servlet.ServletException;
@@ -23,11 +24,12 @@ public class ProductsController extends BaseController {
 
         if (id == null || id.equals("")) {
             request.setAttribute("products", service.products());
-            view("products", request, response);
+            view("products", "Products", request, response);
             return;
         }
 
-        request.setAttribute("product", service.product(Integer.parseInt(id)));
-        view("product", request, response);
+        Product product = service.product(Integer.parseInt(id));
+        request.setAttribute("product", product);
+        view("product", product.getTitle() + " | Product", request, response);
     }
 }
