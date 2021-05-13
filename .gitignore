@@ -1,0 +1,6 @@
+out/
+build/
+.idea/
+nbproject/
+lib/
+@eaDir/
