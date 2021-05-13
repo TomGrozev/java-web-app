@@ -49,17 +49,17 @@
 
         <p>${topic.user.getUsername()}: ${topic.content}</p>
 
-        <h4>Comments:</h4>
+        <h4>Feedback:</h4>
 
-        <c:forEach var="comment" items="${topic.comments}">
-            <p>${comment.user.getUsername()}: ${comment.content}</p>
+        <c:forEach var="feedback" items="${topic.feedback}">
+            <p>${feedback.user.getUsername()}: ${feedback.content}</p>
         </c:forEach>
 
-        <h5>Write a comment: </h5>
+        <h5>Leave feedback: </h5>
 
-        <form action="comments" method="POST">
+        <form action="feedback" method="POST">
             <input type="hidden" name="topic_id" value="${topic.id}">
-            <textarea name="comment" id="newComment" cols="30" rows="10"></textarea>
+            <textarea name="feedback" id="newFeedback" cols="30" rows="10"></textarea>
             <br>
             <input type="submit" value="Post">
         </form>

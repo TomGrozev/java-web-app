@@ -1,11 +1,10 @@
 package helper;
 
 import layout.DatabaseDriver;
-import model.Comment;
+import model.Feedback;
 import model.Topic;
 import model.User;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +38,7 @@ public class TopicsHelper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Topic topic = createTopicObject(rs);
-                topic.setComments(getTopicComments(id));
+                topic.setFeedback(getTopicFeedback(id));
                 return topic;
             }
         } catch (SQLException throwables) {
@@ -49,22 +48,22 @@ public class TopicsHelper {
         return null;
     }
 
-    public List<Comment> getTopicComments(int id) {
-        List<Comment> comments = new ArrayList<>();
+    public List<Feedback> getTopicFeedback(int id) {
+        List<Feedback> feedbacks = new ArrayList<>();
 
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM comments WHERE topic = ? ORDER BY id ASC");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM feedback WHERE topic = ? ORDER BY id ASC");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                comments.add(createCommentObject(rs));
+                feedbacks.add(createFeedbackObject(rs));
             }
         } catch (SQLException throwables) {
             throw new RuntimeException(throwables);
         }
 
-        return comments;
+        return feedbacks;
     }
 
     public void createTopic(Topic topic) {
@@ -91,10 +90,10 @@ public class TopicsHelper {
         }
     }
 
-    public void deleteCommentsForTopic(int id) {
+    public void deleteFeedbackForTopic(int id) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM comments WHERE topic = ?");
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM feedback WHERE topic = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException throwables) {
@@ -102,12 +101,12 @@ public class TopicsHelper {
         }
     }
 
-    public void createCommentOnTopic(int topicID, Comment comment) {
+    public void createFeedbackOnTopic(int topicID, Feedback feedback) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO comments(content, username, topic) VALUES (?, ?, ?)");
-            ps.setString(1, comment.getContent());
-            ps.setString(2, comment.getUser().getUsername());
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO feedback(content, username, topic) VALUES (?, ?, ?)");
+            ps.setString(1, feedback.getContent());
+            ps.setString(2, feedback.getUser().getUsername());
             ps.setInt(3, topicID);
             ps.executeUpdate();
         } catch (SQLException throwables) {
@@ -125,12 +124,12 @@ public class TopicsHelper {
         return topic;
     }
 
-    private Comment createCommentObject(ResultSet rs) throws SQLException {
-        Comment comment = new Comment();
-        comment.setId(rs.getInt("id"));
-        comment.setContent(rs.getString("content"));
+    private Feedback createFeedbackObject(ResultSet rs) throws SQLException {
+        Feedback feedback = new Feedback();
+        feedback.setId(rs.getInt("id"));
+        feedback.setContent(rs.getString("content"));
         User user = new User(rs.getString("username"));
-        comment.setUser(user);
-        return comment;
+        feedback.setUser(user);
+        return feedback;
     }
 }

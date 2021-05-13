@@ -1,7 +1,7 @@
 package controller;
 
 import layout.BaseController;
-import model.Comment;
+import model.Feedback;
 import model.TopicsService;
 
 import javax.servlet.ServletException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "CommentsController", urlPatterns = {"/comments"})
-public class CommentsController extends BaseController {
+@WebServlet(name = "FeedbackController", urlPatterns = {"/feedback"})
+public class FeedbackController extends BaseController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!ensureUserLoggedIn(request, response)) {
@@ -20,12 +20,12 @@ public class CommentsController extends BaseController {
 
         int id = Integer.parseInt(request.getParameter("topic_id"));
 
-        Comment comment = new Comment();
-        comment.setContent(request.getParameter("comment"));
-        comment.setUser(getUserSession(request));
+        Feedback feedback = new Feedback();
+        feedback.setContent(request.getParameter("feedback"));
+        feedback.setUser(getUserSession(request));
 
         TopicsService service = new TopicsService();
-        service.createComment(id, comment);
+        service.createFeedback(id, feedback);
 
         response.sendRedirect("topics?id=" + id);
     }

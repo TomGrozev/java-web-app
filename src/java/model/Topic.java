@@ -7,7 +7,7 @@ public class Topic {
     private String title;
     private String content;
     private User user;
-    private List<Comment> comments;
+    private List<Feedback> feedback;
 
     public int getId() {
         return id;
@@ -41,11 +41,11 @@ public class Topic {
         this.user = user;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<Feedback> getFeedback() {
+        return feedback;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setFeedback(List<Feedback> feedback) {
+        this.feedback = feedback;
     }
 }

@@ -25,11 +25,11 @@ public class TopicsService {
     }
 
     public void deleteTopic(int id) {
-        helper.deleteCommentsForTopic(id);
+        helper.deleteFeedbackForTopic(id);
         helper.deleteTopic(id);
     }
 
-    public void createComment(int topicID, Comment comment) {
-        helper.createCommentOnTopic(topicID, comment);
+    public void createFeedback(int topicID, Feedback feedback) {
+        helper.createFeedbackOnTopic(topicID, feedback);
     }
 }
