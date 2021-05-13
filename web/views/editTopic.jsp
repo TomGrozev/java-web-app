@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <title>${topic.title} | Topic</title>
+        <title>Edit Topic | ${topic.getTitle()}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -40,33 +40,22 @@
             </c:if>
         </div>
 
-        <h3>${topic.title}</h3>
+        <h3>Edit topic</h3>
         <a href="topics">All topics</a>
 
-        <c:if test="${topic.getUser().getUsername() == login_session.getUsername()}">
-            <a href="editTopic?id=${topic.getId()}">Edit Topic</a>
-            <a href="deleteTopic?id=${topic.getId()}">Delete Topic</a>
-        </c:if>
+        <form action="editTopic" method="POST">
+            <input type="hidden" name="id" value="${topic.getId()}">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="${topic.getTitle()}" />
+            </div>
 
-        <p>${topic.getUser().getUsername()}: ${topic.getContent()}</p>
-
-        <c:if test="${topic.isEdited()}">
-            <span>Edited</span>
-        </c:if>
-
-        <h4>Feedback:</h4>
-
-        <c:forEach var="feedback" items="${topic.getFeedback()}">
-            <p>${feedback.user.getUsername()}: ${feedback.getContent()}</p>
-        </c:forEach>
-
-        <h5>Leave feedback: </h5>
-
-        <form action="feedback" method="POST">
-            <input type="hidden" name="topic_id" value="${topic.getId()}">
-            <textarea name="feedback" id="newFeedback" cols="30" rows="10"></textarea>
+            <div>
+                <label for="content">Content</label>
+                <textarea cols="60" rows="10" id="content" name="content">${topic.getContent()}</textarea>
+            </div>
             <br>
-            <input type="submit" value="Post">
+            <input type="submit" value="Edit Topic">
         </form>
     </body>
 </html>

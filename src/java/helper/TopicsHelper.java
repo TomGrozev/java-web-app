@@ -79,6 +79,20 @@ public class TopicsHelper {
         }
     }
 
+    public void editTopic(Topic topic) {
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE topics SET title = ?, content = ?, edited = ? WHERE id = ?");
+            ps.setString(1, topic.getTitle());
+            ps.setString(2, topic.getContent());
+            ps.setBoolean(3, topic.isEdited());
+            ps.setInt(4, topic.getId());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+    }
+
     public void deleteTopic(int id) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
@@ -119,6 +133,7 @@ public class TopicsHelper {
         topic.setId(rs.getInt("id"));
         topic.setTitle(rs.getString("title"));
         topic.setContent(rs.getString("content"));
+        topic.setEdited(rs.getBoolean("edited"));
         User user = new User(rs.getString("username"));
         topic.setUser(user);
         return topic;

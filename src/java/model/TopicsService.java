@@ -24,6 +24,10 @@ public class TopicsService {
         helper.createTopic(topic);
     }
 
+    public void editTopic(Topic topic) {
+        helper.editTopic(topic);
+    }
+
     public void deleteTopic(int id) {
         helper.deleteFeedbackForTopic(id);
         helper.deleteTopic(id);

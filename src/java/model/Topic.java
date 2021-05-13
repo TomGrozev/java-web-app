@@ -6,6 +6,7 @@ public class Topic {
     private int id;
     private String title;
     private String content;
+    private boolean edited = false;
     private User user;
     private List<Feedback> feedback;
 
@@ -31,6 +32,14 @@ public class Topic {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 
     public User getUser() {
