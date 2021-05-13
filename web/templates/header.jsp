@@ -19,6 +19,10 @@
         <a href="login">Login</a>
     </c:otherwise>
 </c:choose>
+<a href="products">Products</a>
+<a href="topics">Topics</a>
+<a href="cart">My Cart</a>
+<a href="profile">Profile</a>
 
 <div>
     <c:if test="${hasErrors}">
