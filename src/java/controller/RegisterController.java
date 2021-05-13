@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class RegisterController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserNotLoggedIn(request, response)) {
+        if (!ensureUserNotLoggedIn(request, response)) {
             return;
         }
 
@@ -26,7 +26,7 @@ public class RegisterController extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserNotLoggedIn(request, response)) {
+        if (!ensureUserNotLoggedIn(request, response)) {
             return;
         }
 

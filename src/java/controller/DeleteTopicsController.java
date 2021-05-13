@@ -14,7 +14,7 @@ import java.io.IOException;
 public class DeleteTopicsController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserLoggedIn(request, response)) {
+        if (!ensureUserLoggedIn(request, response)) {
             return;
         }
 
@@ -34,7 +34,7 @@ public class DeleteTopicsController extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (!isUserLoggedIn(request, response)) {
+        if (!ensureUserLoggedIn(request, response)) {
             return;
         }
 

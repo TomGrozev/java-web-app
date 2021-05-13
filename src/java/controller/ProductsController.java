@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ProductsController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserLoggedIn(request, response)) {
+        if (!ensureUserLoggedIn(request, response)) {
             return;
         }
 

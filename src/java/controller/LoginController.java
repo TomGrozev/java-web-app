@@ -17,8 +17,13 @@ import java.util.Collections;
 public class LoginController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserNotLoggedIn(request, response)) {
+        if (!ensureUserNotLoggedIn(request, response)) {
             return;
+        }
+
+        String redirect_after = request.getParameter("redirect_after");
+        if (redirect_after != null) {
+            request.setAttribute("redirect_after", redirect_after);
         }
 
         view("login", request, response);
@@ -26,9 +31,12 @@ public class LoginController extends BaseController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isUserNotLoggedIn(request, response)) {
+        if (!ensureUserNotLoggedIn(request, response)) {
             return;
         }
+
+        String redirect_after = request.getParameter("redirect_after");
+        System.out.println(redirect_after);
 
         Authentication auth = new Authentication();
 
@@ -39,7 +47,9 @@ public class LoginController extends BaseController {
 
         if (user != null) {
             setUserSession(request, user);
-            response.sendRedirect("/Project1/topics");
+
+            // FIXME: Possible redirect to external site vulnerability
+            response.sendRedirect(redirect_after != null ? redirect_after : "/Project1/topics");
             return;
         }
 

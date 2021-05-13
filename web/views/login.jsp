@@ -35,15 +35,14 @@
         <p>You have registered successfully, please login with your new details.</p>
     </c:if>
 
-    <c:if test="${param.expired == 'true'}">
-        <p>Login expired, please login again.</p>
-    </c:if>
-
     <form action="login" method="post">
         Username: <input type="text" name="username">
         <br>
         Password: <input type="password" name="password">
         <br><br>
+        <c:if test="${redirect_after != null}">
+            <input type="hidden" name="redirect_after" value="${redirect_after}">
+        </c:if>
         <input type="submit" value="Login">
     </form>
     <br>

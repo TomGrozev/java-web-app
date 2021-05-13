@@ -47,28 +47,31 @@ public class BaseController extends HttpServlet {
         request.getSession().invalidate();
     }
 
-    protected boolean isUserLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected boolean isUserLoggedIn(HttpServletRequest request) {
         User user_session = getUserSession(request);
         String username = (user_session == null ? null : user_session.getUsername());
 
-        if (username == null || username.equals("")) {
-            String path = request.getPathInfo();
-            response.sendRedirect("login?redirect_after=" + path);
-            return false;
-        }
-
-        return true;
+        return username != null && !username.equals("");
     }
-    
-    protected boolean isUserNotLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User user_session = getUserSession(request);
-        String username = (user_session == null ? null : user_session.getUsername());
 
-        if (username != null) {
-            response.sendRedirect("topics");
-            return false;
+    protected boolean ensureUserLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean loggedIn = isUserLoggedIn(request);
+
+        if (!loggedIn) {
+            String path = request.getRequestURI();
+            response.sendRedirect("login?redirect_after=" + path);
         }
 
-        return true;
+        return loggedIn;
+    }
+
+    protected boolean ensureUserNotLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean loggedIn = isUserLoggedIn(request);
+
+        if (loggedIn) {
+            response.sendRedirect("topics");
+        }
+
+        return !loggedIn;
     }
 }
