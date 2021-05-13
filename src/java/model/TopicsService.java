@@ -16,6 +16,10 @@ public class TopicsService {
         return helper.getTopics();
     }
 
+    public List<Topic> userEngagedTopics(User user) {
+        return helper.getUserEngagedTopics(user);
+    }
+
     public Topic topic(int id) {
         return helper.getTopic(id);
     }

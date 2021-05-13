@@ -30,6 +30,24 @@ public class ProductsHelper {
         return products;
     }
 
+    public List<Product> getUserProducts(User user) {
+        List<Product> products = new ArrayList<>();
+
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM products WHERE username = ? ORDER BY id DESC");
+            ps.setString(1, user.getUsername());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                products.add(createProductObject(rs));
+            }
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+
+        return products;
+    }
+
     public Product getProduct(int id) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();

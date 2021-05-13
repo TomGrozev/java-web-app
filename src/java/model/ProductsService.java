@@ -16,6 +16,10 @@ public class ProductsService {
         return helper.getProducts();
     }
 
+    public List<Product> userProducts(User user) {
+        return helper.getUserProducts(user);
+    }
+
     public Product product(int id) {
         return helper.getProduct(id);
     }

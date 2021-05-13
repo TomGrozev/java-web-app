@@ -30,6 +30,52 @@ public class TopicsHelper {
         return topics;
     }
 
+    public List<Topic> getUserEngagedTopics(User user) {
+        List<Topic> topics = new ArrayList<>();
+
+        List<Integer> topic_ids = new ArrayList<>();
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT topic FROM feedback WHERE username = ? ORDER BY id ASC");
+            ps.setString(1, user.getUsername());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                topic_ids.add(rs.getInt("topic"));
+            }
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+        System.out.println(topic_ids);
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < topic_ids.size(); i++) {
+            builder.append(" ?");
+            if (i != topic_ids.size() - 1) {
+                builder.append(",");
+            }
+        }
+
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM topics WHERE username = ? OR id IN ("+ builder.toString() +") ORDER BY id DESC");
+            ps.setString(1, user.getUsername());
+
+            int index = 2;
+            for (int id : topic_ids) {
+                ps.setInt(index++, id);
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                topics.add(createTopicObject(rs));
+            }
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+
+        return topics;
+    }
+
     public Topic getTopic(int id) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
