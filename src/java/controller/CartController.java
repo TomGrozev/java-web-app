@@ -33,7 +33,10 @@ public class CartController extends BaseController {
         User user = getUserSession(request);
 
         CartService service = new CartService();
-        service.addProduct(user, id);
+        if (!service.addProduct(user, id)) {
+            response.sendRedirect("products?error=Product+Already+In+Cart");
+            return;
+        }
 
         response.sendRedirect("cart");
     }

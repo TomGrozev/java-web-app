@@ -4,6 +4,7 @@ import layout.DatabaseDriver;
 import model.Cart;
 import model.Product;
 import model.User;
+import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class CartHelper {
 
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT id, title, description, products.username as username FROM cart LEFT JOIN products ON cart.product_id=products.id WHERE cart.username = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT id, title, description, price, products.username as username FROM cart LEFT JOIN products ON cart.product_id=products.id WHERE cart.username = ?");
             ps.setString(1, user.getUsername());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -36,16 +37,20 @@ public class CartHelper {
         return cart;
     }
 
-    public void addProduct(User user, int product_id) {
+    public boolean addProduct(User user, int product_id) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
             PreparedStatement ps = conn.prepareStatement("INSERT INTO cart(product_id, username) VALUES (?, ?)");
             ps.setInt(1, product_id);
             ps.setString(2, user.getUsername());
             ps.executeUpdate();
+        } catch (DerbySQLIntegrityConstraintViolationException e) {
+            return false;
         } catch (SQLException throwables) {
             throw new RuntimeException(throwables);
         }
+
+        return true;
     }
 
     public void removeProduct(User user, int id) {
@@ -59,12 +64,4 @@ public class CartHelper {
             throw new RuntimeException(throwables);
         }
     }
-
-//    private Cart createCartObject(ResultSet rs) throws SQLException {
-//        Cart cart = new Cart();
-//        cart.setTitle(rs.getString("title"));
-//        User user = new User(rs.getString("username"));
-//        cart.setUser(user);
-//        return cart;
-//    }
 }

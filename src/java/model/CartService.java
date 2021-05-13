@@ -21,8 +21,8 @@ public class CartService {
 //        return helper.getProduct(id);
 //    }
 
-    public void addProduct(User user, int product_id) {
-        helper.addProduct(user, product_id);
+    public boolean addProduct(User user, int product_id) {
+        return helper.addProduct(user, product_id);
     }
 
     public void removeProduct(User user, int id) {

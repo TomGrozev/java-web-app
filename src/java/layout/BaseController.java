@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseController extends HttpServlet {
@@ -14,6 +15,19 @@ public class BaseController extends HttpServlet {
     private static final String SESSION_KEY = "username";
 
     protected void view(String viewName, String title, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // add request url errors
+        String error = request.getParameter("error");
+
+        if (error != null) {
+            List<ProjectError> errors = (List<ProjectError>) request.getAttribute("errors");
+            if (errors == null) {
+                errors = new ArrayList<>();
+            }
+            errors.add(new ProjectError(500, error));
+            request.setAttribute("errors", errors);
+            request.setAttribute("hasErrors", true);
+        }
+
         request.setAttribute("login_session", getUserSession(request));
         request.setAttribute("pageTitle", title);
         request.setAttribute("pagePath", viewName);
