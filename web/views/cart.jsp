@@ -51,11 +51,11 @@
             <tbody>
             <c:forEach var="product" items="${cart.getProducts()}">
                 <tr>
-                    <td>${product.title}</td>
-                    <td>$0</td>
+                    <td>${product.getTitle()}</td>
+                    <td>${product.getFormattedPrice()}</td>
                     <td>
                         <form action="deleteCartItem" method="post">
-                            <input type="hidden" name="id" value="${product.id}">
+                            <input type="hidden" name="id" value="${product.getId()}">
                             <input type="submit" value="Remove">
                         </form>
                     </td>

@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <title>${product.title} | Product</title>
+        <title>Edit Product | ${product.getTitle()}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -40,16 +40,27 @@
             </c:if>
         </div>
 
-        <h3>${product.getTitle()}</h3>
-        <a href="products">All products</a>
+        <h3>Edit product</h3>
+        <a href="products">All product for sale</a>
 
-        <c:if test="${product.getUser().getUsername() == login_session.getUsername()}">
-            <a href="editProduct?id=${product.getId()}">Edit Product</a>
-            <a href="deleteProduct?id=${product.getId()}">Delete Product</a>
-        </c:if>
+        <form action="editProduct" method="POST">
+            <input type="hidden" name="id" value="${product.getId()}">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="${product.getTitle()}" />
+            </div>
 
-        <p>Author: ${product.getUser().getUsername()}</p>
-        <p>Price: ${product.getFormattedPrice()}</p>
-        <p>Description: ${product.getDescription()}</p>
+            <div>
+                <label for="description">Description</label>
+                <textarea cols="60" rows="10" id="description" name="description">${product.getDescription()}</textarea>
+            </div>
+
+            <div>
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" min="0" step="any" value="${product.getPrice()}" />
+            </div>
+            <br>
+            <input type="submit" value="Edit Product">
+        </form>
     </body>
 </html>

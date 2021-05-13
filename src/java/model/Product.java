@@ -4,6 +4,7 @@ public class Product {
     private int id;
     private String title;
     private String description;
+    private Double price;
     private User user;
 
     public int getId() {
@@ -28,6 +29,18 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getFormattedPrice() {
+        return "$" + price.toString();
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public User getUser() {

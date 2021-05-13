@@ -24,6 +24,10 @@ public class ProductsService {
         helper.createProduct(product);
     }
 
+    public void editProduct(Product product) {
+        helper.editProduct(product);
+    }
+
     public void deleteProduct(int id) {
         helper.deleteProduct(id);
     }

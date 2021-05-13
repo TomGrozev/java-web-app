@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "NewProductController", urlPatterns = {"/newProduct"})
-public class NewProductsController extends BaseController {
+public class NewProductController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!ensureUserLoggedIn(request, response)) {
@@ -30,6 +30,7 @@ public class NewProductsController extends BaseController {
         Product product = new Product();
         product.setTitle(request.getParameter("title"));
         product.setDescription(request.getParameter("description"));
+        product.setPrice(Double.parseDouble(request.getParameter("price")));
         product.setUser(getUserSession(request));
 
         ProductsService service = new ProductsService();

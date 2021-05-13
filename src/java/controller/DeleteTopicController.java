@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteTopicsController", urlPatterns = {"/deleteTopic"})
-public class DeleteTopicsController extends BaseController {
+@WebServlet(name = "DeleteTopicController", urlPatterns = {"/deleteTopic"})
+public class DeleteTopicController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!ensureUserLoggedIn(request, response)) {

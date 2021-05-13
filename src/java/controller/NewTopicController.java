@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "NewTopicsController", urlPatterns = {"/newTopic"})
-public class NewTopicsController extends BaseController {
+@WebServlet(name = "NewTopicController", urlPatterns = {"/newTopic"})
+public class NewTopicController extends BaseController {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!ensureUserLoggedIn(request, response)) {

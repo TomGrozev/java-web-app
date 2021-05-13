@@ -53,6 +53,11 @@
                 <label for="description">Description</label>
                 <textarea cols="60" rows="10" id="description" name="description"></textarea>
             </div>
+
+            <div>
+                <label for="price">Price</label>
+                <input type="number" id="price" min="0" step="any" name="price" />
+            </div>
             <br>
             <input type="submit" value="Sell Product">
         </form>

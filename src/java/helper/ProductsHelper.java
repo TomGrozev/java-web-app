@@ -50,10 +50,25 @@ public class ProductsHelper {
     public void createProduct(Product product) {
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO products(title, description, username) VALUES (?, ?, ?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO products(title, description, price, username) VALUES (?, ?, ?, ?)");
             ps.setString(1, product.getTitle());
             ps.setString(2, product.getDescription());
-            ps.setString(3, product.getUser().getUsername());
+            ps.setDouble(3, product.getPrice());
+            ps.setString(4, product.getUser().getUsername());
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException(throwables);
+        }
+    }
+
+    public void editProduct(Product product) {
+        try {
+            Connection conn = (new DatabaseDriver.Database()).getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE products SET title = ?, description = ?, price = ? WHERE id = ?");
+            ps.setString(1, product.getTitle());
+            ps.setString(2, product.getDescription());
+            ps.setDouble(3, product.getPrice());
+            ps.setInt(4, product.getId());
             ps.executeUpdate();
         } catch (SQLException throwables) {
             throw new RuntimeException(throwables);
@@ -76,6 +91,7 @@ public class ProductsHelper {
         product.setId(rs.getInt("id"));
         product.setTitle(rs.getString("title"));
         product.setDescription(rs.getString("description"));
+        product.setPrice(rs.getDouble("price"));
         User user = new User(rs.getString("username"));
         product.setUser(user);
         return product;

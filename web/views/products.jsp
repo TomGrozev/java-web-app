@@ -50,6 +50,7 @@
                 <tr>
                     <th>Product</th>
                     <th>Seller</th>
+                    <th>Price</th>
                     <th></th>
                 </tr>
             </thead>
@@ -58,6 +59,7 @@
                 <tr>
                     <td><a href="products?id=${product.id}">${product.title}</a></td>
                     <td>${product.getUser().getUsername()}</td>
+                    <td>${product.getFormattedPrice()}</td>
                     <td>
                         <form action="cart" method="post">
                             <input type="hidden" name="id" value="${product.id}">
