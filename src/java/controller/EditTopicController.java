@@ -1,8 +1,6 @@
 package controller;
 
 import layout.BaseController;
-import model.Product;
-import model.ProductsService;
 import model.Topic;
 import model.TopicsService;
 

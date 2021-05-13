@@ -1,8 +1,6 @@
 package controller;
 
 import layout.BaseController;
-import model.CartService;
-import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

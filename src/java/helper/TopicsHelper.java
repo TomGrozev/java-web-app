@@ -56,7 +56,7 @@ public class TopicsHelper {
 
         try {
             Connection conn = (new DatabaseDriver.Database()).getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM topics WHERE username = ? OR id IN ("+ builder.toString() +") ORDER BY id DESC");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM topics WHERE username = ? OR id IN (" + builder + ") ORDER BY id DESC");
             ps.setString(1, user.getUsername());
 
             int index = 2;

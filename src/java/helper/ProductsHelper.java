@@ -4,7 +4,6 @@ import layout.DatabaseDriver;
 import model.Product;
 import model.User;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

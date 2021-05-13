@@ -1,9 +1,6 @@
 package model;
 
 import helper.CartHelper;
-import helper.ProductsHelper;
-
-import java.util.List;
 
 public class CartService {
 
