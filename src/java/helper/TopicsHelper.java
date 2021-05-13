@@ -45,7 +45,6 @@ public class TopicsHelper {
         } catch (SQLException throwables) {
             throw new RuntimeException(throwables);
         }
-        System.out.println(topic_ids);
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < topic_ids.size(); i++) {
