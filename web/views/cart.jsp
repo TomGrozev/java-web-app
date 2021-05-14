@@ -22,7 +22,7 @@
             <td>
                 <form action="deleteCartItem" method="post">
                     <input type="hidden" name="id" value="${product.getId()}">
-                    <input type="submit" value="Remove">
+                    <input class="btn" type="submit" value="Remove">
                 </form>
             </td>
         </tr>

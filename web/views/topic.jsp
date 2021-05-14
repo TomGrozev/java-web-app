@@ -7,17 +7,18 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>${topic.title}</h3>
-<a href="topics">All topics</a>
-
+<br>
+<a class="btn" href="topics">All topics</a>
+<br><br><br>
 <c:if test="${topic.getUser().getUsername() == login_session.getUsername()}">
-    <a href="editTopic?id=${topic.getId()}">Edit Topic</a>
-    <a href="deleteTopic?id=${topic.getId()}">Delete Topic</a>
+    <a class="btn" href="editTopic?id=${topic.getId()}">Edit Topic</a>
+    <a class="btn" href="deleteTopic?id=${topic.getId()}">Delete Topic</a>
 </c:if>
 
 <p>${topic.getUser().getUsername()}: ${topic.getContent()}</p>
 
 <c:if test="${topic.isEdited()}">
-    <span>Edited</span>
+    <small>Edited</small>
 </c:if>
 
 <h4>Feedback:</h4>
@@ -32,5 +33,5 @@
     <input type="hidden" name="topic_id" value="${topic.getId()}">
     <textarea name="feedback" id="newFeedback" cols="30" rows="10"></textarea>
     <br>
-    <input type="submit" value="Post">
+    <input class="btn" type="submit" value="Post">
 </form>

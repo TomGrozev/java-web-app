@@ -9,11 +9,15 @@
 <html>
 <head>
     <title>${pageTitle}</title>
+    <link rel="stylesheet" href="https://pagecdn.io/lib/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <jsp:include page="/templates/header.jsp" />
 
-    <jsp:include page="/views/${pagePath}.jsp" />
+    <div class="body container">
+        <jsp:include page="/views/${pagePath}.jsp" />
+    </div>
 
     <jsp:include page="/templates/footer.jsp" />
 </body>

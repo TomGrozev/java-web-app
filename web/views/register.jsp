@@ -6,13 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<h2>Register</h2>
+
 <form action="register" method="post">
-    Username: <input type="text" name="username">
-    <br>
-    Password: <input type="password" name="password">
+    <div class="input-group">
+        Username: <input type="text" name="username">
+    </div>
+    <div class="input-group">
+        Password: <input type="password" name="password">
+    </div>
     <br><br>
-    <input type="submit" value="Register">
+    <input type="submit" value="Register" class="btn">
 </form>
 <br>
-<p>-- OR --</p>
-<a href="login">Login</a>
+<h4>-- OR --</h4>
+<a class="btn" href="login">Login</a>

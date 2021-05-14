@@ -7,7 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>Edit product</h3>
-<a href="products">All product for sale</a>
+<a class="btn" href="products">All product for sale</a>
+<br><br>
 
 <form action="editProduct" method="POST">
     <input type="hidden" name="id" value="${product.getId()}">
@@ -26,5 +27,5 @@
         <input type="number" id="price" name="price" min="0" step="any" value="${product.getPrice()}" />
     </div>
     <br>
-    <input type="submit" value="Edit Product">
+    <input class="btn" type="submit" value="Edit Product">
 </form>

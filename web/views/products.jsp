@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h4>Products for Sale</h4>
 
-<a href="newProduct">Sell a Product</a>
+<a class="btn" href="newProduct">Sell a Product</a>
 <table>
     <thead>
         <tr>
@@ -27,7 +27,7 @@
             <td>
                 <form action="cart" method="post">
                     <input type="hidden" name="id" value="${product.id}">
-                    <input type="submit" value="Add to Cart">
+                    <input class="btn" type="submit" value="Add to Cart">
                 </form>
             </td>
         </tr>

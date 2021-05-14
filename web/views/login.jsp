@@ -13,15 +13,17 @@
 </c:if>
 
 <form action="login" method="post">
-    Username: <input type="text" name="username">
-    <br>
-    Password: <input type="password" name="password">
+    <div class="input-group">
+        Username: <input type="text" name="username">
+    </div>
+    <div class="input-group">
+        Password: <input type="password" name="password">
+    </div>
     <br><br>
     <c:if test="${redirect_after != null}">
         <input type="hidden" name="redirect_after" value="${redirect_after}">
     </c:if>
-    <input type="submit" value="Login">
+    <input type="submit" value="Login" class="btn">
 </form>
-<br>
-<p>-- OR --</p>
-<a href="register">Register</a>
+<h4>-- OR --</h4>
+<a class="btn" href="register">Register</a>

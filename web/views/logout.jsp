@@ -7,6 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <form action="logout" method="post">
-    <input type="submit" value="Yes">
-    <a href="topics">No, go back</a>
+    <input class="btn" type="submit" value="Yes">
+    <a class="btn" href="topics">No, go back</a>
 </form>

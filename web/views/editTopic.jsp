@@ -7,7 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h3>Edit topic</h3>
-<a href="topics">All topics</a>
+<a class="btn" href="topics">All topics</a>
+<br><br>
 
 <form action="editTopic" method="POST">
     <input type="hidden" name="id" value="${topic.getId()}">
@@ -21,5 +22,5 @@
         <textarea cols="60" rows="10" id="content" name="content">${topic.getContent()}</textarea>
     </div>
     <br>
-    <input type="submit" value="Edit Topic">
+    <input class="btn" type="submit" value="Edit Topic">
 </form>

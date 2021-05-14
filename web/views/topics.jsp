@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h4>Active Topics</h4>
 
-<a href="newTopic">New Topic</a>
+<a class="btn" href="newTopic">New Topic</a>
 <table>
     <thead>
         <tr>
